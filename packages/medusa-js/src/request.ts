@@ -174,18 +174,13 @@ class Client {
       // mode: 'cors' // not implemented on CF,
     })
 
-    const {
-      json,
-      status,
-      statusText,
-      headers: responseHeaders,
-    } = await fetch(request)
+    const response = await fetch(request)
 
     return {
-      data: await json(),
-      status,
-      statusText,
-      headers: Object.fromEntries(responseHeaders),
+      data: await response.json(),
+      status: response.status,
+      statusText: response.statusText,
+      headers: Object.fromEntries(response.headers),
       config,
       request,
     }

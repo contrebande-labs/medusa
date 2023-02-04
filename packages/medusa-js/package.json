@@ -1,6 +1,6 @@
 {
-  "name": "@contrebande-labs/medusa-js",
-  "version": "0.0.1",
+  "name": "medusa-js-cloudflare-workers",
+  "version": "0.0.3",
   "description": "Experimental Cloudflare Workers compatible client for Medusa Commerce Rest API",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

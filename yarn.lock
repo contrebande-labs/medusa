@@ -2255,26 +2255,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@contrebande-labs/medusa-js@workspace:packages/medusa-js":
-  version: 0.0.0-use.local
-  resolution: "@contrebande-labs/medusa-js@workspace:packages/medusa-js"
-  dependencies:
-    "@medusajs/medusa": ^1.7.4
-    "@types/uuid": ^9.0.0
-    axios: ^0.24.0
-    cross-env: ^7.0.3
-    jest: ^27.4.7
-    qs: ^6.10.3
-    retry-axios: ^2.6.0
-    ts-jest: ^27.1.5
-    tsup: ^6.5.0
-    typescript: ^4.9.4
-    uuid: ^9.0.0
-  peerDependencies:
-    "@medusajs/medusa": ^1.7.4
-  languageName: unknown
-  linkType: soft
-
 "@cspotcode/source-map-support@npm:^0.8.0":
   version: 0.8.1
   resolution: "@cspotcode/source-map-support@npm:0.8.1"
@@ -24350,6 +24330,26 @@ __metadata:
   peerDependencies:
     medusa-core-utils: ^1.1.31
     typeorm: 0.x
+  languageName: unknown
+  linkType: soft
+
+"medusa-js-cloudflare-workers@workspace:packages/medusa-js":
+  version: 0.0.0-use.local
+  resolution: "medusa-js-cloudflare-workers@workspace:packages/medusa-js"
+  dependencies:
+    "@medusajs/medusa": ^1.7.4
+    "@types/uuid": ^9.0.0
+    axios: ^0.24.0
+    cross-env: ^7.0.3
+    jest: ^27.4.7
+    qs: ^6.10.3
+    retry-axios: ^2.6.0
+    ts-jest: ^27.1.5
+    tsup: ^6.5.0
+    typescript: ^4.9.4
+    uuid: ^9.0.0
+  peerDependencies:
+    "@medusajs/medusa": ^1.7.4
   languageName: unknown
   linkType: soft
 
