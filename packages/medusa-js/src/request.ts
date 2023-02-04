@@ -1,4 +1,10 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestHeaders } from "axios"
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosResponse,
+} from "axios"
 import * as rax from "retry-axios"
 import { v4 as uuidv4 } from "uuid"
 
@@ -148,6 +154,43 @@ class Client {
     )
   }
 
+  async adapter(config: AxiosRequestConfig): Promise<AxiosResponse> {
+    const { url: path, baseURL, params, method, data: body, headers } = config
+
+    const url = new URL(path ?? "", baseURL)
+
+    if (params) {
+      for (const key of Object.keys(params)) {
+        url.searchParams.append(key, params[key])
+      }
+    }
+
+    const request = new Request(url.href, {
+      method: method?.toUpperCase() ?? "GET",
+      body,
+      redirect: "manual",
+      headers,
+      // credentials: config.withCredentials ? 'include' : 'omit', // not implemented on CF
+      // mode: 'cors' // not implemented on CF,
+    })
+
+    const {
+      json,
+      status,
+      statusText,
+      headers: responseHeaders,
+    } = await fetch(request)
+
+    return {
+      data: await json(),
+      status,
+      statusText,
+      headers: Object.fromEntries(responseHeaders),
+      config,
+      request,
+    }
+  }
+
   /**
    * Creates the axios client used for requests
    * As part of the creation, we configure the retry conditions
@@ -158,6 +201,7 @@ class Client {
   createClient(config: Config): AxiosInstance {
     const client = axios.create({
       baseURL: config.baseUrl,
+      adapter: this.adapter,
     })
 
     rax.attach(client)

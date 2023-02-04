@@ -1,7 +1,7 @@
 {
-  "name": "@medusajs/medusa-js",
-  "version": "1.3.7",
-  "description": "Client for Medusa Commerce Rest API",
+  "name": "@contrebande-labs/medusa-js",
+  "version": "0.0.1",
+  "description": "Experimental Cloudflare Workers compatible client for Medusa Commerce Rest API",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -33,11 +33,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
+    "url": "https://github.com/contrebande-labs/medusa",
     "directory": "packages/medusa-js"
   },
   "bugs": {
-    "url": "https://github.com/medusajs/medusa/issues"
+    "url": "https://github.com/contrebande-labs/medusa/issues"
   },
   "devDependencies": {
     "@medusajs/medusa": "^1.7.4",
@@ -49,5 +49,5 @@
     "typescript": "^4.9.4"
   },
   "gitHead": "cd1f5afa5aa8c0b15ea957008ee19f1d695cbd2e",
-  "homepage": "https://docs.medusajs.com/js-client/overview"
+  "homepage": "https://github.com/contrebande-labs/medusa/packages-medusa-js"
 }
