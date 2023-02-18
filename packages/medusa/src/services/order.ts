@@ -322,7 +322,7 @@ class OrderService extends TransactionBaseService {
       select = select.filter((v) => !totalFields.includes(v))
     }
 
-    const toSelect = select
+    const toSelect = [...select]
     if (toSelect.length > 0 && toSelect.indexOf("tax_rate") === -1) {
       toSelect.push("tax_rate")
     }
@@ -903,8 +903,7 @@ class OrderService extends TransactionBaseService {
 
       await addrRepo.save({ ...addr, ...address })
     } else {
-      const created = addrRepo.create({ ...address })
-      await addrRepo.save(created)
+      order.billing_address = addrRepo.create({ ...address })
     }
   }
 
@@ -941,8 +940,7 @@ class OrderService extends TransactionBaseService {
 
       await addrRepo.save({ ...addr, ...address })
     } else {
-      const created = addrRepo.create({ ...address })
-      await addrRepo.save(created)
+      order.shipping_address = addrRepo.create({ ...address })
     }
   }
 
@@ -1885,7 +1883,7 @@ class OrderService extends TransactionBaseService {
         )
       }
 
-      const refundAmount = customRefundAmount || receivedReturn.refund_amount
+      const refundAmount = customRefundAmount ?? receivedReturn.refund_amount
 
       const orderRepo = manager.getCustomRepository(this.orderRepository_)
 
@@ -1909,10 +1907,10 @@ class OrderService extends TransactionBaseService {
         }
       }
 
-      if (receivedReturn.refund_amount > 0) {
+      if (refundAmount > 0) {
         const refund = await this.paymentProviderService_
           .withTransaction(manager)
-          .refundPayment(order.payments, receivedReturn.refund_amount, "return")
+          .refundPayment(order.payments, refundAmount, "return")
 
         order.refunds = [...(order.refunds || []), refund]
       }

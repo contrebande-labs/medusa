@@ -7,10 +7,10 @@ import {
 } from "class-validator"
 import { OrderService, ReturnService, SwapService } from "../../../../services"
 
-import { EntityManager } from "typeorm"
 import { Type } from "class-transformer"
-import { validator } from "../../../../utils/validator"
 import { isDefined } from "medusa-core-utils"
+import { EntityManager } from "typeorm"
+import { validator } from "../../../../utils/validator"
 
 /**
  * @oas [post] /returns/{id}/receive
@@ -24,6 +24,8 @@ import { isDefined } from "medusa-core-utils"
  *     application/json:
  *       schema:
  *         $ref: "#/components/schemas/AdminPostReturnsReturnReceiveReq"
+ * x-codegen:
+ *   method: receive
  * x-codeSamples:
  *   - lang: JavaScript
  *     label: JS Client
@@ -145,6 +147,7 @@ class Item {
  *     description: The Line Items that have been received.
  *     type: array
  *     items:
+ *       type: object
  *       required:
  *         - item_id
  *         - quantity
